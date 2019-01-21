@@ -1,7 +1,6 @@
 <p align="center">
-  <p align="center">:muscle: :muscle: :muscle:</p>
   <h3 align="center">fitti</h3>
-  <p align="center">yet another fitness tracker, LEL<p>
+  <p align="center">yet another fitness tracker, lol<p>
 </p>
 
 ## Install dependencies
