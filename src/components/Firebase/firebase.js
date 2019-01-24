@@ -1,6 +1,6 @@
-import app from 'firebase/app';
-import 'firebase/auth';
-import 'firebase/database';
+import firebase from '@firebase/app';
+import '@firebase/auth';
+import '@firebase/firestore';
 
 const config = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -13,13 +13,26 @@ const config = {
 
 class Firebase {
   constructor() {
-    app.initializeApp(config);
+    firebase.initializeApp(config);
 
-    this.auth = app.auth();
-    this.db = app.database();
+    this.auth = firebase.auth();
+    this.db = firebase.firestore();
   }
 
-  signInWithPopup = () => this.auth.signInWithPopup(new app.auth.GoogleAuthProvider())
+  signInWithPopup = () => this.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
+
+  addWeight = async obj => {
+    try {
+      await this.db.collection('weights').doc().set({
+        ...obj,
+        uid: this.auth.currentUser.uid,
+      });
+      return true;
+    } catch (error) {
+      console.error(error);
+      return false;
+    }
+  }
 }
 
 export default Firebase;
