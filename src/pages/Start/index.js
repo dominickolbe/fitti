@@ -42,7 +42,7 @@ class Start extends Component {
               as="h1"
               style={{ marginBottom: '25px' }}
             >
-              Hello {user.displayName}
+              Hello, {user.displayName}
             </Header>
           </div>
         </div>
