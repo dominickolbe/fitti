@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import dayjs from 'dayjs';
+import orderBy from 'lodash/orderBy';
 import { withAuth, withFirebase } from '../../components/Firebase';
-import { Button, Input, Table, Header } from 'semantic-ui-react'
+import { Button, Input, Table, Header } from 'semantic-ui-react';
 
 class Start extends Component {
   state = {
@@ -15,15 +16,15 @@ class Start extends Component {
 
   loadData = async () => {
     const weights = await this.props.firebase.getCollection('weights');
-    this.setState({ weights });
+    this.setState({ weights: orderBy(weights, 'time', 'desc') });
   }
 
   onClick = async () => {
-    const weight = this.state.value.replace(',', '.');
+    const weight = this.state.value.replace(',', '.').trim();
 
     await this.props.firebase.addWeight({
       time: dayjs().format(),
-      value: weight,
+      value: parseFloat(weight),
     });
 
     this.loadData();
