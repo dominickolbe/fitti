@@ -33,6 +33,15 @@ class Firebase {
       return false;
     }
   }
+
+  getCollection = async collection => {
+    const snapshot = await this.db
+      .collection(collection)
+      .where('uid', '==', this.auth.currentUser.uid)
+      .get()
+    const data = snapshot.docs.map(doc => doc.data());
+    return data;
+  }
 }
 
 export default Firebase;
