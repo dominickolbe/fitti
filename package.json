@@ -10,7 +10,7 @@
     "deploy": "yarn && yarn build && firebase deploy"
   },
   "dependencies": {
-    "dayjs": "^1.8.16",
+    "dayjs": "^1.8.17",
     "firebase": "^7.2.1",
     "lodash": "^4.17.15",
     "react": "^16.11.0",
